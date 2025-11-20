@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌍 Global Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #fdf8f3, #f8e8d6);
+  color: #2b1f14;
+  transition: background 0.6s ease, color 0.6s ease;
+}
+
+/* 🧩 Elegant Animated Grid Background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, rgba(176, 116, 67, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(176, 116, 67, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: moveGrid 30s linear infinite alternate;
+  z-index: -3;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* 🌊 Terracotta Wave Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='800'%3E%3Cpath d='M0,200 Q400,150 800,200 T1600,200 V800 H0 Z' fill='%23f3d1b0' opacity='0.25'/%3E%3Cpath d='M0,400 Q400,350 800,400 T1600,400 V800 H0 Z' fill='%23b07443' opacity='0.25'/%3E%3C/svg%3E");
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  animation: waveFloat 18s ease-in-out infinite alternate;
+  z-index: -2;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* 🌑 Dark Mode Styling */
+.dark body {
+  background: radial-gradient(circle at top left, #1a1817, #2c2b2a);
+  color: #f3e4d1;
+}
+
+.dark body::before {
+  background-image:
+    linear-gradient(90deg, rgba(243, 209, 176, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(243, 209, 176, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.25;
+}
+
+.dark body::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='800'%3E%3Cpath d='M0,200 Q400,150 800,200 T1600,200 V800 H0 Z' fill='%232c1b12' opacity='0.5'/%3E%3Cpath d='M0,400 Q400,350 800,400 T1600,400 V800 H0 Z' fill='%23634124' opacity='0.35'/%3E%3C/svg%3E");
+  opacity: 0.35;
+}
+
+/* ✨ Glassmorphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(176, 116, 67, 0.25);
+  transition: all 0.3s ease-in-out;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 45px rgba(176, 116, 67, 0.35);
+}
+
+/* 🧡 Buttons */
+button,
+a.button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+button::before,
+a.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.3), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+button:hover::before,
+a.button:hover::before {
+  opacity: 1;
+}
+
+button:hover,
+a.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(176, 116, 67, 0.45);
+}
+
+/* 🪩 Cool Floating Animations */
+@keyframes waveFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-25px); }
+}
+
+@keyframes moveGrid {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* 🌾 Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(176, 116, 67, 0.7);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(176, 116, 67, 0.9);
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-track:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 📱 Responsive Adjustments */
+@media (max-width: 768px) {
+  body::after {
+    animation-duration: 25s;
+  }
+}
+@media (max-width: 480px) {
+  body::before {
+    background-size: 30px 30px;
+  }
+}
+@media (max-width: 320px) {
+  .glass-card {
+    border-radius: 1rem;
+  }
+}
